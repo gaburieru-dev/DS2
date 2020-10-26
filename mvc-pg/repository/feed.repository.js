@@ -42,4 +42,4 @@ module.exports = {
         const feedResult = await conn.query(queryDefault +' where foto.usuario_id in ('+ whereIn +') and foto.status = $1 order by foto.id desc', ['S']);
         return ajustaAtributos(feedResult.rows);        
     }
-};
+}; 
