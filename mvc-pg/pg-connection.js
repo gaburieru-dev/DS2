@@ -4,5 +4,5 @@ module.exports = new Client({
     host: 'localhost',
     database: 'ds2db',
     user: 'postgres',
-    password: 'mikael'
+    password: '123456'
 });
