@@ -17,4 +17,4 @@ routes.put('/:id([0-9]+)', PessoaController.update);
 //Remove o item com o ID passado por parametro na URI
 routes.delete('/:id([0-9]+)', PessoaController.delete);
 
-module.exports = routes;
+module.exports = routes; 
