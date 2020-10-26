@@ -9,4 +9,4 @@ routes.get('/:id([0-9]+)', ComentarioController.findOne);
 routes.put('/:id([0-9]+)', ComentarioController.update);
 routes.delete('/:id([0-9]+)', ComentarioController.delete);
 
-module.exports = routes;
+module.exports = routes; 
