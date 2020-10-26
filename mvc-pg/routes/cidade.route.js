@@ -9,4 +9,4 @@ routes.get('/:id([0-9]+)', CidadeController.findOne);
 routes.put('/:id([0-9]+)', CidadeController.update);
 routes.delete('/:id([0-9]+)', CidadeController.delete);
 
-module.exports = routes;
+module.exports = routes; 
