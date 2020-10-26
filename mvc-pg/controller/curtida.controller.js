@@ -28,9 +28,9 @@ module.exports = {
             });        
     },
     create: (req,res)=> {
-        const cidade = req.body;
+        const curtida = req.body;
 
-        curtidaRepository.create( cidade )
+        curtidaRepository.create( curtida )
             .then((result) => {
                 res.status(201).send(result.rows[0]);
             })
@@ -40,12 +40,12 @@ module.exports = {
     },
     update: (req,res)=> {
         //Pega o conteúdo do corpo da requisição
-        const cidade = req.body;
+        const curtida = req.body;
 
         //Atribui o ID do item baseado no parametro da URL
-        cidade.id = req.params.id;
+        curtida.id = req.params.id;
 
-        curtidaRepository.update( cidade )
+        curtidaRepository.update( curtida )
             .then((result) => {
 
                 if (result.rows.length > 0){
@@ -64,7 +64,7 @@ module.exports = {
         //Pega o ID a ser excluído através da URL
         var id = req.params.id;
 
-        cidadeRepository.delete( id )
+        curtidaRepository.delete( id )
             .then((result) => {
 
                 if (result.rowCount > 0){
