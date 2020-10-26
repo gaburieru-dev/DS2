@@ -32,6 +32,7 @@ body {
     font-weight: 600;
     font-size: 14px;
 }
+.profile,
 .feeds {
     margin-top: 50px;
     padding: 30px;
@@ -111,4 +112,57 @@ body {
     height: 18px;
     outline: 0;
     padding: 0;
+}
+
+.profile {
+    max-width: 990px;
+}
+.profile .avatar {
+    margin: 0px auto;
+    margin-top: 10px;
+    max-width: 150px;
+}
+.profile .avatar img {
+    border-radius: 50%;
+    border: 3px solid #262626;
+}
+.profile .username {
+    margin-top: 30px;
+    display: flex;
+}
+.profile .username span {
+    color: #262626;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 32px;
+}
+.profile .username .btn-outline-secondary {
+    margin-left: 20px;
+}
+.profile .fotos,
+.profile .overview {
+    margin: 20px 0;
+}
+.profile .fotos {
+    border-top: 1px solid #dbdbdb;
+}
+.profile .fotos .foto {
+    position: relative;
+    margin-top: 20px;
+}
+.profile .fotos .foto .contagem {
+    position: absolute;
+    background-color: rgba(0,0,0,0.3);
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.profile .fotos .contagem .btn-link {
+    color: #fff;
+}
+.profile .fotos .contagem {
+    display: none;
+}
+.profile .fotos .foto:hover > .contagem {
+    display: block;
 }
