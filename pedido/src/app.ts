@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 
-import cidadeRoute from './router/cidade.route'
-import clienteRoute from './router/cliente.route'
+import noticiaRoute from './router/noticias.route'
+import usuarioRoute from './router/usuario.route'
 import pedidoRoute from './router/pedido.route'
-import produtoRoute from './router/produto.route'
-import tabelaprecoRoute from './router/tabelapreco.route'
+import jogoRoute from './router/jogo.route'
+import atualizacoesRoute from './router/atualizacoes.route'
 
 export class App {
     public express: express.Application;
@@ -23,11 +23,11 @@ export class App {
     }
 
     private routes(): void {
-        this.express.use('/cidades', cidadeRoute);
-        this.express.use('/clientes', clienteRoute);
+        this.express.use('/noticias', noticiaRoute);
+        this.express.use('/usuarios', usuarioRoute);
         this.express.use('/pedidos', pedidoRoute);
-        this.express.use('/produtos', produtoRoute);
-        this.express.use('/tabelasprecos', tabelaprecoRoute);
+        this.express.use('/jogos', jogoRoute);
+        this.express.use('/tabelasprecos', atualizacoesRoute);
     }
 
 }

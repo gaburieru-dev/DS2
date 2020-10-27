@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
-import { TabelaPrecoEntity } from "../entity/atualizacoes.entity";
+import { NoticiasEntity } from "../entity/noticias.entity";
 
-class TabelaPrecoController {
+class NoticiasController {
     
     public async findAll(req: Request, res: Response) {
 
         try {
 
-            const tabelaprecos: TabelaPrecoEntity[] = await getRepository(TabelaPrecoEntity).find();
-            res.send(tabelaprecos);
+            const noticias: NoticiasEntity[] = await getRepository(NoticiasEntity).find();
+            res.send(noticias);
 
         } catch (error) {
             res.status(500).send(error);
@@ -19,12 +19,12 @@ class TabelaPrecoController {
 
     public async create(req: Request, res: Response) {
 
-        const tabelapreco = req.body;
+        const noticia = req.body;
 
         try {
 
-            await getRepository(TabelaPrecoEntity).save( tabelapreco );
-            res.status(201).send(tabelapreco);
+            await getRepository(NoticiasEntity).save( noticia );
+            res.status(201).send(noticia);
 
         } catch (error) {
             res.status(500).send(error);
@@ -37,11 +37,11 @@ class TabelaPrecoController {
 
         try {
             //Buscar o registro pela ID
-            const tabelapreco = await getRepository(TabelaPrecoEntity).findOne(id);
+            const noticia = await getRepository(NoticiasEntity).findOne(id);
 
-            //Se não encotrar uma tabela preco, devolve erro 404
-            if (tabelapreco) {
-                res.send(tabelapreco);    
+            //Se não exnotrar uma noticia, devolve erro 404
+            if (noticia) {
+                res.send(noticia);    
             } else {
                 res.status(404).send({message: 'Record not found'})
             }
@@ -58,15 +58,15 @@ class TabelaPrecoController {
 
         try {
             //Buscar o registro pela ID
-            const tabelapreco = await getRepository(TabelaPrecoEntity).findOne(id);
+            const noticia = await getRepository(NoticiasEntity).findOne(id);
 
-            //Se não encotrar uma tabela preco, devolve erro 404
-            if (tabelapreco) {
+            //Se não exnotrar uma noticia, devolve erro 404
+            if (noticia) {
                 //Atualizar o registro
-                await getRepository(TabelaPrecoEntity).update(tabelapreco.id, novo);
+                await getRepository(NoticiasEntity).update(noticia.id, novo);
 
                 //Atualiza o ID do objeto novo
-                novo.id = tabelapreco.id;
+                novo.id = noticia.id;
                 
                 res.send(novo);
 
@@ -85,12 +85,12 @@ class TabelaPrecoController {
 
         try {
             //Buscar o registro pela ID
-            const tabelapreco = await getRepository(TabelaPrecoEntity).findOne(id);
+            const noticia = await getRepository(NoticiasEntity).findOne(id);
 
-            //Se não encotrar uma tabela preco, devolve erro 404
-            if (tabelapreco) {
+            //Se não exnotrar uma noticia, devolve erro 404
+            if (noticia) {
                 //Excluir o registro
-                await getRepository(TabelaPrecoEntity).delete(tabelapreco);
+                await getRepository(NoticiasEntity).delete(noticia);
 
                 res.status(204).send();
 
@@ -106,4 +106,4 @@ class TabelaPrecoController {
 
 }
 
-export default new TabelaPrecoController();
+export default new NoticiasController();

@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
-import { ClienteEntity } from "../entity/usuario.entity";
+import { UsuarioEntity } from "../entity/usuario.entity";
 
-class ClienteController {
+class UsuarioController {
     
     public async findAll(req: Request, res: Response) {
 
         try {
 
-            const clientes: ClienteEntity[] = await getRepository(ClienteEntity).find();
-            res.send(clientes);
+            const usuarios: UsuarioEntity[] = await getRepository(UsuarioEntity).find();
+            res.send(usuarios);
 
         } catch (error) {
             res.status(500).send(error);
@@ -19,14 +19,14 @@ class ClienteController {
 
     public async create(req: Request, res: Response) {
 
-        const cliente = req.body;
+        const usuario = req.body;
 
-        console.log('Este aqui -> ', cliente);
+        console.log('Este aqui -> ', usuario);
 
         try {
 
-            await getRepository(ClienteEntity).save( cliente );
-            res.status(201).send(cliente);
+            await getRepository(UsuarioEntity).save( usuario );
+            res.status(201).send(usuario);
 
         } catch (error) {
             res.status(500).send(error);
@@ -39,11 +39,11 @@ class ClienteController {
 
         try {
             //Buscar o registro pela ID
-            const cliente = await getRepository(ClienteEntity).findOne(id);
+            const usuario = await getRepository(UsuarioEntity).findOne(id);
 
-            //Se não exnotrar uma cliente, devolve erro 404
-            if (cliente) {
-                res.send(cliente);    
+            //Se não exnotrar uma usuario, devolve erro 404
+            if (usuario) {
+                res.send(usuario);    
             } else {
                 res.status(404).send({message: 'Record not found'})
             }
@@ -60,15 +60,15 @@ class ClienteController {
 
         try {
             //Buscar o registro pela ID
-            const cliente = await getRepository(ClienteEntity).findOne(id);
+            const usuario = await getRepository(UsuarioEntity).findOne(id);
 
-            //Se não exnotrar uma cliente, devolve erro 404
-            if (cliente) {
+            //Se não exnotrar um usuario, devolve erro 404
+            if (usuario) {
                 //Atualizar o registro
-                await getRepository(ClienteEntity).update(cliente.id, novo);
+                await getRepository(UsuarioEntity).update(usuario.id, novo);
 
                 //Atualiza o ID do objeto novo
-                novo.id = cliente.id;
+                novo.id = usuario.id;
                 
                 res.send(novo);
 
@@ -87,12 +87,12 @@ class ClienteController {
 
         try {
             //Buscar o registro pela ID
-            const cliente = await getRepository(ClienteEntity).findOne(id);
+            const usuario = await getRepository(UsuarioEntity).findOne(id);
 
-            //Se não exnotrar uma cliente, devolve erro 404
-            if (cliente) {
+            //Se não exnotrar um usuario, devolve erro 404
+            if (usuario) {
                 //Excluir o registro
-                await getRepository(ClienteEntity).delete(cliente);
+                await getRepository(UsuarioEntity).delete(usuario);
 
                 res.status(204).send();
 
@@ -108,4 +108,4 @@ class ClienteController {
 
 }
 
-export default new ClienteController();
+export default new UsuarioController();

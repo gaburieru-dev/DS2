@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { NoticiasEntity } from "./noticias.entity";
+import { NoticiaEntity } from "./noticias.entity";
 import { AtualizacoesEntity } from "./atualizacoes.entity";
 
 @Entity({name: 'usuario'})
@@ -19,6 +19,6 @@ export class UsuarioEntity {
     @ManyToOne( type => AtualizacoesEntity, {eager: true, nullable: true})
     atualizacoes: AtualizacoesEntity;
 
-    @ManyToOne( type => NoticiasEntity, {eager: true, nullable: false})
-    noticias: NoticiasEntity;
+    @ManyToOne( type => NoticiaEntity, {eager: true, nullable: false})
+    noticias: NoticiaEntity;
 }

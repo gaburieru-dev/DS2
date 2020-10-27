@@ -1,6 +1,6 @@
-import { ClienteEntity } from './usuario.entity';
+import { UsuarioEntity } from './usuario.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ItemPedidoEntity } from './itempedido.entity';
+import { AlugarJogoEntity } from './alugarjogo.entity';
 
 @Entity({name: 'pedido'})
 export class PedidoEntity {
@@ -13,9 +13,9 @@ export class PedidoEntity {
     @Column({nullable: false, type: 'date'})
     dtpedido: Date;
 
-    @ManyToOne( type => ClienteEntity, {eager: true, nullable: false})
-    cliente: ClienteEntity;
+    @ManyToOne( type => UsuarioEntity, {eager: true, nullable: false})
+    usuario: UsuarioEntity;
 
-    @OneToMany(type => ItemPedidoEntity, item => item.pedido, {eager: true, cascade: true})
-    itens: ItemPedidoEntity[];
+    @OneToMany(type => AlugarJogoEntity, jogo => jogo.pedido, {eager: true, cascade: true})
+    jogos: AlugarJogoEntity[];
 }

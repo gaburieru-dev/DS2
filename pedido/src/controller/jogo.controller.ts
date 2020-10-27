@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
-import { ProdutoEntity } from "../entity/produto.entity";
+import { JogoEntity } from "../entity/jogo.entity";
 
-class ProdutoController {
+class JogoController {
     
     public async findAll(req: Request, res: Response) {
 
         try {
 
-            const produtos: ProdutoEntity[] = await getRepository(ProdutoEntity).find();
-            res.send(produtos);
+            const jogos: JogoEntity[] = await getRepository(JogoEntity).find();
+            res.send(jogos);
 
         } catch (error) {
             res.status(500).send(error);
@@ -19,12 +19,12 @@ class ProdutoController {
 
     public async create(req: Request, res: Response) {
 
-        const produto = req.body;
+        const jogo = req.body;
 
         try {
 
-            await getRepository(ProdutoEntity).save( produto );
-            res.status(201).send(produto);
+            await getRepository(JogoEntity).save( jogo );
+            res.status(201).send(jogo);
 
         } catch (error) {
             res.status(500).send(error);
@@ -37,11 +37,11 @@ class ProdutoController {
 
         try {
             //Buscar o registro pela ID
-            const produto = await getRepository(ProdutoEntity).findOne(id);
+            const jogo = await getRepository(JogoEntity).findOne(id);
 
-            //Se não exnotrar uma produto, devolve erro 404
-            if (produto) {
-                res.send(produto);    
+            //Se não exnotrar um jogo, devolve erro 404
+            if (jogo) {
+                res.send(jogo);    
             } else {
                 res.status(404).send({message: 'Record not found'})
             }
@@ -51,22 +51,22 @@ class ProdutoController {
         }
 
     }
-
+ 
     public async update(req: Request, res: Response) {
         const id = req.params.id;
         const novo = req.body;
 
         try {
             //Buscar o registro pela ID
-            const produto = await getRepository(ProdutoEntity).findOne(id);
+            const jogo = await getRepository(JogoEntity).findOne(id);
 
-            //Se não exnotrar uma produto, devolve erro 404
-            if (produto) {
+            //Se não exnotrar um jogo, devolve erro 404
+            if (jogo) {
                 //Atualizar o registro
-                await getRepository(ProdutoEntity).update(produto.id, novo);
+                await getRepository(JogoEntity).update(jogo.id, novo);
 
                 //Atualiza o ID do objeto novo
-                novo.id = produto.id;
+                novo.id = jogo.id;
                 
                 res.send(novo);
 
@@ -85,12 +85,12 @@ class ProdutoController {
 
         try {
             //Buscar o registro pela ID
-            const produto = await getRepository(ProdutoEntity).findOne(id);
+            const jogo = await getRepository(JogoEntity).findOne(id);
 
-            //Se não exnotrar uma produto, devolve erro 404
-            if (produto) {
+            //Se não encontrar um jogo, devolve erro 404
+            if (jogo) {
                 //Excluir o registro
-                await getRepository(ProdutoEntity).delete(produto);
+                await getRepository(JogoEntity).delete(jogo);
 
                 res.status(204).send();
 
@@ -106,4 +106,4 @@ class ProdutoController {
 
 }
 
-export default new ProdutoController();
+export default new JogoController();
