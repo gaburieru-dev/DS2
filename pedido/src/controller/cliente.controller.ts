@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
-import { ClienteEntity } from "../entity/cliente.entity";
+import { ClienteEntity } from "../entity/usuario.entity";
 
 class ClienteController {
     

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
-import { TabelaPrecoEntity } from "../entity/tabelapreco.entity";
+import { TabelaPrecoEntity } from "../entity/atualizacoes.entity";
 
 class TabelaPrecoController {
     

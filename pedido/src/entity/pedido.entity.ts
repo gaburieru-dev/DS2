@@ -1,4 +1,4 @@
-import { ClienteEntity } from './cliente.entity';
+import { ClienteEntity } from './usuario.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ItemPedidoEntity } from './itempedido.entity';
 
