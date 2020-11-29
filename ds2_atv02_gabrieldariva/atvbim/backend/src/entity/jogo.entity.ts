@@ -1,4 +1,5 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { AlugarEntity } from "./alugar_jogo.entity";
 import { UsuarioEntity } from "./usuario.entity";
 
 @Entity({name: 'jogo'})
@@ -20,4 +21,7 @@ export class JogoEntity {
 
     @ManyToOne (type => UsuarioEntity, {eager: true, nullable: false})
     usuario: UsuarioEntity
+
+    @OneToOne (type => AlugarEntity, {eager: true, nullable: false})
+    alugar_jogo: AlugarEntity
 }
