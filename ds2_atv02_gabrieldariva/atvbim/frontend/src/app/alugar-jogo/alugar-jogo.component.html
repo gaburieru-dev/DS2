@@ -1,0 +1,128 @@
+<mat-sidenav-container class="sidenav-custom">
+    <mat-sidenav #sidenav position="end" disableClose="true">
+        <mat-toolbar>
+            <h2 *ngIf="!alugar_jogo.id">Alugar um Jogo</h2>
+            <h2 *ngIf="alugar_jogo.id">Alugar um Jogo</h2>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="sidenav.close()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <div class="formulario">
+
+            <mat-form-field>
+                <input matInput placeholder="Nome do Jogo" [(ngModel)]="jogo.nome_jogo">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="E-MAIL" [(ngModel)]="alugar_jogo.email">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Senha" [(ngModel)]="alugar_jogo.senha">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Data" [(ngModel)]="alugar_jogo.data">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Quantidade vendida" [(ngModel)]="alugar_jogo.quant_vend">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Resumo do Jogo" [(ngModel)]="alugar_jogo.resumo">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Usuario" [(value)]="usuario.alugar_jogo"
+                        [compareWith]="compareOptions">
+                    <mat-option *ngFor="let usuario of usuarios" [value]="usuario">{{usuario.nome}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+        </div>
+
+        <mat-toolbar>
+            <span class="spacer"></span>
+            <button mat-button (click)="sidenav.close()">Cancelar</button>
+            <button mat-raised-button color="primary" (click)="confirmar()">Confirmar</button>
+        </mat-toolbar>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-card>
+            <mat-card-title>
+                <mat-toolbar color="primary">
+                    <h3>Alugar um Jogo</h3>
+                    <span class="spacer"></span>
+
+                    <button mat-icon-button (click)="adicionar()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-toolbar>
+
+                <mat-progress-bar mode="indeterminate" color="warn" *ngIf="loading"></mat-progress-bar>
+            </mat-card-title>
+
+            <mat-card-content>
+                <table mat-table [dataSource]="dataSource" *ngIf="!errorMessage">
+                    <!-- NOME DO JOGO -->
+                    <ng-container matColumnDef="nome_alugar_jogo">
+                        <th mat-header-cell *matHeaderCellDef>Nome do Jogo</th>
+                        <td mat-cell *matCellDef="let alugar_jogo"> {{alugar_jogo.nome_jogo}} </td>
+                    </ng-container>
+
+                    <!-- EMAIL -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef>E-Mail</th>
+                        <td mat-cell *matCellDef="let alugar_jogo"> {{jogo.alugar_jogo.email}} </td>
+                    </ng-container>
+
+                    <!-- SENHA -->
+                    <ng-container matColumnDef="senha">
+                        <th mat-header-cell *matHeaderCellDef>Senha</th>
+                        <td mat-cell *matCellDef="let alugar_jogo"> {{jogo.alugar_jogo.senha}} </td>
+                    </ng-container>
+
+                    <!-- DATA -->
+                    <ng-container matColumnDef="data">
+                        <th mat-header-cell *matHeaderCellDef>Data</th>
+                        <td mat-cell *matCellDef="let alugar_jogo"> {{jogo.alugar_jogo.data}} </td>
+                    </ng-container>
+
+                    <!-- OPTIONS -->
+                    <ng-container matColumnDef="options">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let alugar_jogo">
+                            <button mat-button [matMenuTriggerFor]="menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item (click)="editar(alugar_jogo)">
+                                    <mat-icon>edit</mat-icon>
+                                    <span>Alterar</span>
+                                </button>
+                                <button mat-menu-item (click)="excluir(alugar_jogo)">
+                                    <mat-icon>delete</mat-icon>
+                                    <span>Excluir</span>
+                                </button>
+                            </mat-menu>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <div class="panel-error" *ngIf="errorMessage">
+                    <img src="assets/oops.png">
+                    <h1 class="mat-h1">Ocorreu um erro!</h1>
+                    <p class="mat-caption">{{ errorMessage }}</p>
+                    <button mat-button color="warn" (click)="ngOnInit()">Tentar Novamente</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-sidenav-content>
+</mat-sidenav-container>

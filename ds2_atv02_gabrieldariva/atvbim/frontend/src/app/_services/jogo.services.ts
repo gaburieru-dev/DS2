@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AlugarEntity } from './alugar-jogo.service';
+import { AlugarEntity } from './alugar-jogo.services';
 import { UsuarioEntity } from './usuario.service';
 
 @Injectable({
